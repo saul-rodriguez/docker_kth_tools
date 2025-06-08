@@ -1,6 +1,7 @@
 export USERNAME=dockeruser
 export USERPASSWORD=dummypsw
-export VNCPORT=5900
+export VNCPASSWORD=changeme
+#export VNCPORT=5900
 
 mkdir -p /var/run/sshd
 ssh-keygen -A
@@ -39,7 +40,7 @@ chmod +x /home/$USERNAME/.vnc/xstartup
 # start ssh and vnc
 /usr/sbin/sshd
 rm -rf /tmp/.X*
-su - $USERNAME -c "vncserver :0  -rfbport ${VNCPORT} -geometry 1280x1024 -depth 24"
+su - $USERNAME -c "vncserver :0  -rfbport ${VNCPORT} -geometry ${VNCDISPLAY} -depth 24"
 rm /run/nologin
 echo 'Welcome to KTH EDA tools container';
 tail -f /dev/null

@@ -1,6 +1,8 @@
-#docker run -d \
-#          -p 5900:5900 \
-#          --name my_ubxfce ubxfce
-          
-#docker run -it -p 5900:5900 --name my_tiger_xfce tiger_xfce
-docker run -d -p 2227:22 -p 5900:5900 --name my_tiger_xfce tiger_xfce
+#Change this line with the resolution of your screen:
+export DISPLAY_RESOLUTION=1920x1080
+
+docker run -d --name my_tiger_xfce \
+                -p 2227:22 \
+                -p 5900:5900 \
+                -e VNCDISPLAY=${DISPLAY_RESOLUTION} \
+                tiger_xfce
