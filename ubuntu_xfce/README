@@ -1,0 +1,4 @@
+This docker is based on https://github.com/iphoneintosh/ubuntu-docker
+
+It has been slightly modified so that it can be accessed through vnc via localport:0
+
