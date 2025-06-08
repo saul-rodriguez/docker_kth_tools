@@ -71,9 +71,12 @@ startxfce4 & \n\
 " > /root/.vnc/xstartup
 RUN chmod +x /root/.vnc/xstartup
 
-CMD [ "/bin/bash", "-c", " \
-  echo 'Welcome to KTH EDA tools container'; \  
-  vncserver :0 -rfbport ${VNCPORT} -geometry $VNCDISPLAY -depth $VNCDEPTH; \
-  tail -f /dev/null \
-" ]
 
+COPY run.sh /run.sh
+CMD ["/bin/sh", "/run.sh"]
+
+#CMD [ "/bin/bash", "-c", " \
+#  echo 'Welcome to KTH EDA tools container'; \  
+#  vncserver :0 -rfbport ${VNCPORT} -geometry $VNCDISPLAY -depth $VNCDEPTH; \
+#  tail -f /dev/null \
+#" ]
