@@ -43,8 +43,8 @@ ENV VNCPORT=${VNCPORT}
 EXPOSE ${VNCPORT}
 
 ARG SSHPORT=22
-ENV SSHPORT=${SSHPORT}}
-EXPOSE ${SSHPORT}}
+ENV SSHPORT=${SSHPORT}
+EXPOSE ${SSHPORT}
 
 ARG VNCPWD=changeme
 ENV VNCPWD=${VNCPWD}
@@ -71,7 +71,7 @@ startxfce4 & \n\
 " > /root/.vnc/xstartup
 RUN chmod +x /root/.vnc/xstartup
 
-ENTRYPOINT [ "/bin/bash", "-c", " \
+CMD [ "/bin/bash", "-c", " \
   echo 'Welcome to KTH EDA tools container'; \  
   vncserver :0 -rfbport ${VNCPORT} -geometry $VNCDISPLAY -depth $VNCDEPTH; \
   tail -f /dev/null \
