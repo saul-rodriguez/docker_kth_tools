@@ -3,7 +3,7 @@ export USERPASSWORD=dummypsw
 
 mkdir -p /var/run/sshd
 ssh-keygen -A
-sed -i 's/^#PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+#sed -i 's/^#PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 sed -i 's/^#PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
 
 #Create a user and give ssh access
@@ -27,7 +27,13 @@ usermod -aG wheel $USERNAME
 #Create EDA pkg and project directories
 mkdir /opt
 mkdir /opt/tools
-ln -s /opt/tools /pkg
+
+cd /tools
+tar -xzvf /tools/ngspice.tgz
+tar -xzvf /tools/xschem.tgz
+tar -xzvf /tools/qucs-s.tgz
+
+#ln -s /opt/tools /pkg
 
 #Configure vnc
 mkdir -p /home/$USERNAME/.vnc
@@ -41,7 +47,7 @@ chmod +x /home/$USERNAME/.vnc/xstartup
 # start ssh and vnc
 /usr/sbin/sshd
 rm -rf /tmp/.X*
-su - $USERNAME -c "vncserver :2 -geometry 1280x1024 -depth 24 -SecurityTypes None"
+su - $USERNAME -c "vncserver :3 -geometry 1280x1024 -depth 24 -SecurityTypes None"
 rm /run/nologin
 tail -f /dev/null
 
